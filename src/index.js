@@ -10,6 +10,8 @@ let timer;
 let lastHole = 0;
 let points = 0;
 let difficulty = "hard";
+const song = new Audio('/assets/molesong.mp3?raw=true');
+
 
 /**
  * Generates a random integer within a range.
@@ -257,8 +259,48 @@ function setDuration(duration) {
 function stopGame(){
   // stopAudio(song);  //optional
   clearInterval(timer);
+  stopMusic();
   return "game stopped";
 }
+
+
+/**
+*
+* Starts playing the audio.
+*
+*/
+function playAudio(audioObject){
+  audioObject.play();
+}
+
+/**
+*
+* Stops playing the audio.
+*
+*/
+function stopAudio(audioObject){
+  audioObject.pause();
+}
+
+/**
+*
+* This function is called when the game is started. It playes the
+* background music.
+*
+*/
+function playMusic(){
+  playAudio(song);
+}
+
+/**
+*
+* This function is called when the game is stopped. It pauses the
+* background music.
+*/
+function stopMusic(){
+  stopAudio(song);
+}
+
 
 /**
 *
@@ -267,6 +309,7 @@ function stopGame(){
 *
 */
 function startGame(){
+  playMusic();
   clearScore();
   setDuration(10);
   setEventListeners();
