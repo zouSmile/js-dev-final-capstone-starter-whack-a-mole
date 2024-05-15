@@ -130,7 +130,7 @@ function showUp() {
 */
 function showAndHide(hole, delay){
   // TODO: call the toggleVisibility function so that it adds the 'show' class.
-  hole.classList.add('show');
+  toggleVisibility(hole);
   
   const timeoutID = setTimeout(() => {
     // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
@@ -269,10 +269,10 @@ function stopGame(){
 function startGame(){
   clearScore();
   setDuration(10);
-  showUp(); 
   setEventListeners();
   startTimer();
   updateTimer();
+  showUp(); 
   return "game started";
 }
 
