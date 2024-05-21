@@ -10,7 +10,7 @@ let timer;
 let lastHole = 0;
 let points = 0;
 let difficulty = "hard";
-const song = new Audio("../assets/molesong.mp3?raw=true");
+const song = new Audio("./assets/molesong.mp3");
 
 
 /**
