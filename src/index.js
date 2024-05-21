@@ -333,7 +333,7 @@ function startGame() {
     window.alert("Please choose difficulty level first.");
     return "wait for difficulty setting";
   }
-  window.alert(`Play the game with ${difficulty} difficulty levle.`);
+  window.alert(`Play the game with ${difficulty} difficulty level.`);
   playMusic();
   clearScore();
   setDuration(10);
