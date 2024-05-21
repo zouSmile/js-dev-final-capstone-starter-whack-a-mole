@@ -4,12 +4,14 @@ const startButton = document.querySelector("#start");
 // TODO: Add the missing query selectors:
 const score = document.querySelector("#score"); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector("#timer"); // use querySelector() to get the timer element.
+// Get the selected radio button
+const difficultyOptions = document.querySelectorAll("input[type='radio']");
 
 let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty;
 const song = new Audio("./assets/molesong.mp3");
 
 /**
@@ -237,6 +239,30 @@ function setEventListeners() {
 
 /**
  *
+ * This is the event handler that set difficulty level when a player
+ * clicks on a radio button.
+ *
+ */
+function setDifficulty(event) {
+  difficultyOptions.forEach((radio) => {
+    if (radio.checked) difficulty = radio.value;
+  });
+  return difficulty;
+}
+
+/**
+ *
+ * Adds the 'change' event listeners to the difficulty radio buttons.
+ */
+function setDifficultyEventListener() {
+  difficultyOptions.forEach((radio) =>
+    radio.addEventListener("click", setDifficulty)
+  );
+  return difficultyOptions;
+}
+
+/**
+ *
  * This function sets the duration of the game. The time limit, in seconds,
  * that a player has to click on the sprites.
  *
@@ -303,6 +329,11 @@ function stopMusic() {
  *
  */
 function startGame() {
+  if (!difficulty) {
+    window.alert("Please choose difficulty level first.");
+    return "wait for difficulty setting";
+  }
+  window.alert(`Play the game with ${difficulty} difficulty levle.`);
   playMusic();
   clearScore();
   setDuration(10);
@@ -313,6 +344,7 @@ function startGame() {
   return "game started";
 }
 
+setDifficultyEventListener();
 startButton.addEventListener("click", startGame);
 
 // Please do not modify the code below.
